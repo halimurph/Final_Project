@@ -29,7 +29,6 @@ background(0);
   
   beginShape();
         for (m = 0; m < PI * 2; m += 0.5) {
-          r = random(34, 67);
           let x = random(width);
           let y = random(height);
           vertex(x, y);
