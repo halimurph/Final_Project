@@ -20,7 +20,23 @@ var p = 1;
 function setup() {
   createCanvas(windowWidth-20, windowHeight-20);
   colorMode(HSB,359,100,100,100);
+  
+  let l = 100;
+  let j = 100;
+  noStroke();
+  fill(50);
+background(0);
+  
+  beginShape();
+        for (m = 0; m < PI * 2; m += 0.5) {
+          r = random(34, 67);
+          let x = random(width);
+          let y = random(height);
+          vertex(x, y);
+        }
+        endShape(CLOSE);
 
+  
   cols = floor(width / scl);
   rows = floor(height / scl);
   fr = createP('');
@@ -30,12 +46,12 @@ function setup() {
   for (var i = 0; i < numbPart; i++) {
     particles[i] = new Particle();
   }
-  background(0);
+ 
 }
 
 function draw() {
   if (p>0){
-    angMult = map(mouseX, 0, width, 5, 50);  // Adjust angMult dynamically, more Left = less angles(straighter), more Right = more angles(curvier)
+    angMult = map(mouseX, 0, width, 5, 50);  // Adjust angMult dynamically
     for (let particle of particles) {
   particle.maxSpeed = map(mouseY, 0, height, 1, 10);  // Slower at the top, faster at the bottom
 }
@@ -53,8 +69,9 @@ function draw() {
     yoff += inc;
 
     zoff += zOffInc;
+    
   }
-
+    
   for (var i = 0; i < particles.length; i++) {
     particles[i].follow(flowfield);
     particles[i].update();
